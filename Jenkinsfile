@@ -6,7 +6,7 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    app = docker.build("terraform-tae/petclinic")
+                    app = docker.build("terraform-tae/fatclinic")
                 }
             }
         }
