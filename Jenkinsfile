@@ -35,10 +35,13 @@ pipeline {
                     git config --global user.email "1418083@donga.ac.kr"
                     git checkout -B main
                 """)
-                sshagent(credentials: ['git']) {
-                    sh "git remote set-url origin https://github.com/XOXOT/jenkins_was.git"
+                withCredentials([gitUsernamePassword(credentialsId: 'git')]) {
                     sh "git push -u origin main"
                 }
+                // sshagent(credentials: ['git']) {
+                //     sh "git remote set-url origin https://github.com/XOXOT/jenkins_was.git"
+                //     sh "git push -u origin main"
+                // }
             }
             post {
                     failure {
@@ -66,7 +69,7 @@ pipeline {
         //     }
 
         //     // previousTAG 를 최신 빌으 번호로 바꿔서 push 
-        //     withCredentials([usernamePassword(credentialsId: 'github-signin', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+        //     withCredentials([usernamePassword(credentialsId: 'github-signin', usernameVariable: 'GIT_US  ERNAME', passwordVariable: 'GIT_PASSWORD')]) {
         //         sh("""
         //            #!/usr/bin/env bash
         //            git config --local credential.helper "!f() { echo username=\\$GIT_USERNAME; echo password=\\$GIT_PASSWORD; }; f"
