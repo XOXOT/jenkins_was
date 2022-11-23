@@ -22,24 +22,18 @@ pipeline {
         }
 
         stage('K8S Manifest Update') {
-            sh("""
-                git config --global user.name "XOXOT"
-                git config --global user.email "1418083@donga.ac.kr"
-                git checkout -B main
-            """)
+
             steps {
+
                 git credentialsId: 'git',
                     url: 'https://github.com/XOXOT/jenkins_was.git',
                     branch: 'main'
 
                 sh "sed -i 's/fatclinic:.*\$/fatclinic:${env.BUILD_NUMBER}/g' deploy.yaml"
+                sh "git config --global user.name "XOXOT""
+                sh "git config --global user.email "1418083@donga.ac.kr""
                 sh "git add deploy.yaml"
                 sh "git commit -m '[UPDATE] fatclinic ${env.BUILD_NUMBER} image versioning'"
-                // sh("""
-                //     git config --global user.name "XOXOT"
-                //     git config --global user.email "1418083@donga.ac.kr"
-                //     git checkout -B main
-                // """)
                 withCredentials([gitUsernamePassword(credentialsId: 'git')]) {
                     sh "git push -u origin main"
                 }
