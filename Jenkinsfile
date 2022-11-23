@@ -34,9 +34,11 @@ pipeline {
                 sh "git config --global user.email "1418083@donga.ac.kr""
                 sh "git add deploy.yaml"
                 sh "git commit -m '[UPDATE] fatclinic ${env.BUILD_NUMBER} image versioning'"
-                withCredentials([gitUsernamePassword(credentialsId: 'git')]) {
-                    sh "git push -u origin main"
-                }
+                sh "git push -u origin main"
+                
+                // withCredentials([gitUsernamePassword(credentialsId: 'git')]) {
+                //     sh "git push -u origin main"
+                // }
                 // sshagent(credentials: ['git']) {
                 //     sh "git remote set-url origin https://github.com/XOXOT/jenkins_was.git"
                 //     sh "git push -u origin main"
