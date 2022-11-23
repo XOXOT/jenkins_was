@@ -27,7 +27,7 @@ pipeline {
                     url: 'https://github.com/XOXOT/jenkins_was.git',
                     branch: 'main'
 
-                sh "sed -i 's/fatclinic:.*\$/fatclinic:${env.BUILD_NUMBER}/g' deployment.yaml"
+                sh "sed -i 's/fatclinic:.*\$/fatclinic:${env.BUILD_NUMBER}/g' deploy.yaml"
                 sh "git add deployment.yaml"
                 sh "git commit -m '[UPDATE] fatclinic ${env.BUILD_NUMBER} image versioning'"
                 sshagent(credentials: ['git']) {
