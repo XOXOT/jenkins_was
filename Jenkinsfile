@@ -30,6 +30,11 @@ pipeline {
                 sh "sed -i 's/fatclinic:.*\$/fatclinic:${env.BUILD_NUMBER}/g' deploy.yaml"
                 sh "git add deploy.yaml"
                 sh "git commit -m '[UPDATE] fatclinic ${env.BUILD_NUMBER} image versioning'"
+                sh("""
+                    git config --global user.name "XOXOT"
+                    git config --global user.email "1418083@donga.ac.kr"
+                    git checkout -B main
+                """)
                 sshagent(credentials: ['git']) {
                     sh "git remote set-url origin https://github.com/XOXOT/jenkins_was.git"
                     sh "git push -u origin main"
