@@ -40,7 +40,7 @@ pipeline {
                 //     git config --global user.email "1418083@donga.ac.kr"
                 //     git checkout -B main
                 // """)
-                withCredentials([gitUsernamePassword(credentialsId: 'git', usernameVariable: 'XOXOT', passwordVariable: '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')]) {
+                withCredentials([gitUsernamePassword(credentialsId: 'git')]) {
                     sh "git push -u origin main"
                 }
                 // sshagent(credentials: ['git']) {
