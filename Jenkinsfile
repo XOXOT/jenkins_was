@@ -20,12 +20,13 @@ pipeline {
                 }
             }
         }
-        sh("""
-            git config --global user.name "XOXOT"
-            git config --global user.email "1418083@donga.ac.kr"
-            git checkout -B main
-        """)
+
         stage('K8S Manifest Update') {
+            sh("""
+                git config --global user.name "XOXOT"
+                git config --global user.email "1418083@donga.ac.kr"
+                git checkout -B main
+            """)
             steps {
                 git credentialsId: 'git',
                     url: 'https://github.com/XOXOT/jenkins_was.git',
