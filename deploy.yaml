@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: fatclinic-container
-        image: asia.gcr.io/terraform-tae/fatclinic:27
+        image: asia.gcr.io/terraform-tae/fatclinic:28
         ports:
         - containerPort: 8080
         resources:
