@@ -30,12 +30,10 @@ pipeline {
                     branch: 'main'
 
                 sh "sed -i 's/fatclinic:.*\$/fatclinic:${env.BUILD_NUMBER}/g' deploy.yaml"
-                sh "git config --global user.name "XOXOT""
-                sh "git config --global user.email "1418083@donga.ac.kr""
                 sh "git add deploy.yaml"
                 sh "git commit -m '[UPDATE] fatclinic ${env.BUILD_NUMBER} image versioning'"
                 sh "git push -u origin main"
-                
+
                 // withCredentials([gitUsernamePassword(credentialsId: 'git')]) {
                 //     sh "git push -u origin main"
                 // }
