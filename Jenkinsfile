@@ -63,5 +63,10 @@ pipeline {
                         }                      
                         sh "sudo rm -rf /var/lib/jenkins/workspace/${env.JOB_NAME}/*"
                         env.pushYamlResult=true
-    }
+                    }
+                }    
+            }   
+        }
+    }             
+
 }
