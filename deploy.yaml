@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: fatclinic-container
-        image: asia.gcr.io/terraform-tae/fatclinic:13 # 아까 자신이 gcr에 업로드한 이미지 
+        image: asia.gcr.io/terraform-tae/fatclinic:26
         ports:
         - containerPort: 8080
         resources:
