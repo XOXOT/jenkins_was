@@ -25,18 +25,17 @@ pipeline {
 
             steps {
 
-                git credentialsId: 'git',
+                git credentialsId: 'XOXOT',
                     url: 'https://github.com/XOXOT/jenkins_was.git',
                     branch: 'main'
 
                 sh "sed -i 's/fatclinic:.*\$/fatclinic:${env.BUILD_NUMBER}/g' deploy.yaml"
                 sh "git add deploy.yaml"
                 sh "git commit -m '[UPDATE] fatclinic ${env.BUILD_NUMBER} image versioning'"
-                sh "git push -u origin main"
 
-                // withCredentials([gitUsernamePassword(credentialsId: 'git')]) {
-                //     sh "git push -u origin main"
-                // }
+                withCredentials([gitUsernamePassword(credentialsId: 'XOXOT')]) {
+                    sh "git push -u origin main"
+                }
                 // sshagent(credentials: ['git']) {
                 //     sh "git remote set-url origin https://github.com/XOXOT/jenkins_was.git"
                 //     sh "git push -u origin main"
