@@ -26,7 +26,7 @@ pipeline {
             steps {
 
                 git credentialsId: 'XOXOT',
-                    url: 'https://github.com/XOXOT/ArgoCD_yaml.git',
+                    url: 'https://github.com/XOXOT/argoCD_yaml.git',
                     branch: 'main'
 
                 sh "sed -i 's/fatclinic:.*\$/fatclinic:${env.BUILD_NUMBER}/g' deploy.yaml"
